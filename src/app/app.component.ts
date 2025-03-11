@@ -4,7 +4,7 @@ import { TrackerComponent } from './tracker/tracker.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TrackerComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
