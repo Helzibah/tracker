@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tracker',
@@ -9,16 +9,16 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class TrackerComponent {
 
-  id: string = '';
-  item: string = '';
+  id: string;
+  item: string;
 
-  constructor(private route: ActivatedRoute,) {  }
+  constructor(private route: ActivatedRoute,) {
+    this.id = route.snapshot.queryParamMap.get('id') || '';
+    this.item = route.snapshot.queryParamMap.get('item') || 'package';
+  }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params: ParamMap) => {
-      this.id = params.get('id') || '';
-      this.item = params.get('item') || 'package';
-    });
+
   }
 
 }
