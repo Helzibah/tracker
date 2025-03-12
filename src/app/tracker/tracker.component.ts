@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import 'material-symbols/outlined.css';
 
 @Component({
   selector: 'app-tracker',
