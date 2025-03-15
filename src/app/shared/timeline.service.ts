@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Timeline } from './timeline.model';
+import { Document } from 'yaml';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,7 @@ export class TimelineService {
 
   constructor() { }
 
-  parseRaw(raw: string) : Timeline {
-    var t = new Timeline();
-    t.header = raw;
-    return t;
+  parseRaw(raw: Document) : Timeline {
+    return new Timeline(raw.toJSON());
   }
 }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { parseAllDocuments } from 'yaml';
+import { Section, Sections } from './section.model';
 import { Tracking } from './tracking.model';
 
 @Injectable({
@@ -26,6 +28,26 @@ export class TrackingService {
   }
 
   private parseContent(content: string) : Tracking {
-    return new Tracking({ timelineRaw: content });
+    var t = new Tracking();
+    var documents = parseAllDocuments(content);
+    for (var d of documents) {
+      if (d.errors.length > 0) {
+        console.log("help! document parse errors:", d.errors);
+      }
+
+      var doc = d.toJSON() as Section;
+
+      switch (doc.name.toLocaleLowerCase()) {
+        case Sections.Label:
+          t.labelRaw = d;
+          break;
+        case Sections.Timeline:
+          t.timelineRaw = d;
+          break;
+        default:
+          console.log("unknown section: ", doc, d);
+      }
+    }
+    return t;
   }
 }
