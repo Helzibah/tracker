@@ -1,1 +1,24 @@
-<p>label works!</p>
+<div class="sticker">
+  <div class="wrapper">
+    <div class="field"  *ngIf="label.to">
+      <div class="label">Destination</div>
+      <div class="text">{{label.to}}</div>
+    </div>
+    <div class="field" *ngIf="id">
+      <div class="label">Tracking</div>
+      <div class="text">{{id}}</div>
+    </div>
+    <div class="field" *ngIf="item">
+      <div class="label">Description</div>
+      <div class="text">{{item}}</div>
+    </div>
+    <div class="field" *ngIf="label.from">
+      <div class="label">Return Address</div>
+      <div class="text">{{label.from}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="dots">
+  IMPORTANT Do Not Bend
+</div>

@@ -36,7 +36,7 @@ export class TrackerComponent {
     private timelineService: TimelineService,
   ) {
     this.id = route.snapshot.queryParamMap.get('id') || '';
-    this.item = route.snapshot.queryParamMap.get('item') || 'package';
+    this.item = route.snapshot.queryParamMap.get('item') || '';
   }
 
   ngOnInit(): void {

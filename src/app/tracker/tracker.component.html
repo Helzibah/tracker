@@ -1,8 +1,8 @@
-<div *ngIf="loaded">
-  <div *ngIf="label">
-    <app-label [label]="label"></app-label>
+<div *ngIf="loaded" class="wrapper">
+  <div *ngIf="label" class="label">
+    <app-label [label]="label" [id]="id" [item]="item"></app-label>
   </div>
-  <div *ngIf="timeline">
+  <div *ngIf="timeline" class="timeline">
     <app-timeline [timeline]="timeline"></app-timeline>
   </div>
 </div>
