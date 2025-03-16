@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import 'material-symbols/outlined.css';
 import { LabelComponent } from '../label/label.component';
 import { Label } from '../shared/label.model';
 import { LabelService } from '../shared/label.service';

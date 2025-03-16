@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+$material-symbols-font-path: 'material-symbols/';
+@use 'material-symbols/outlined';
+
 .title-font {
   font-family: "Permanent Marker", cursive;
   font-weight: 400;
