@@ -5,8 +5,19 @@
       <div class="text">{{label.to}}</div>
     </div>
     <div class="field" *ngIf="id">
-      <div class="label">Tracking</div>
-      <div class="text">{{id}}</div>
+      <div class="text">
+        <qrcode
+        [qrdata]="id"
+        [cssClass]="'center'"
+        [colorDark]="'#000000'"
+        [colorLight]="'#ffffff'"
+        [elementType]="'canvas'"
+        [errorCorrectionLevel]="'M'"
+        [margin]="4"
+        [scale]="64"
+        [width]="300"
+      ></qrcode>
+      </div>
     </div>
     <div class="field" *ngIf="item">
       <div class="label">Description</div>

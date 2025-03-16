@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { QRCodeComponent } from 'angularx-qrcode';
 import { Label } from '../shared/label.model';
 
 @Component({
   selector: 'app-label',
   imports: [
     CommonModule,
+    QRCodeComponent,
   ],
   templateUrl: './label.component.html',
   styleUrl: './label.component.scss'
