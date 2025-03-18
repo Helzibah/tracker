@@ -19,9 +19,9 @@
       ></qrcode>
       </div>
     </div>
-    <div class="field" *ngIf="item">
+    <div class="field" *ngIf="item || label.description">
       <div class="label">Description</div>
-      <div class="text">{{item}}</div>
+      <div class="text">{{label.quantity}} {{item || label.description}}</div>
     </div>
     <div class="field" *ngIf="label.from">
       <div class="label">Return Address</div>
