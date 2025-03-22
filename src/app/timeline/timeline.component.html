@@ -1,18 +1,4 @@
 <div class="sticker">
-  <p-timeline [value]="timeline.events" align="left">
-    <ng-template pTemplate="opposite" let-event>
-      {{event.date}}
-    </ng-template>
-    <ng-template pTemplate="content" let-event>
-      {{event.description}}
-    </ng-template>
-  </p-timeline>
-  <p-timeline [value]="timeline.future" align="left">
-    <ng-template pTemplate="opposite" let-event>
-      {{event.date}}
-    </ng-template>
-    <ng-template pTemplate="content" let-event>
-      {{event.description}}
-    </ng-template>
-  </p-timeline>
+  <app-line [events]="timeline.events"></app-line>
+  <app-line [events]="timeline.future"></app-line>
 </div>

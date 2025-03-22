@@ -1,0 +1,11 @@
+<p-timeline [value]="events" align="left">
+  <ng-template pTemplate="opposite" let-event>
+    <span class="date">{{event.date}}</span>
+  </ng-template>
+  <ng-template pTemplate="marker" let-event>
+    <span class="material-symbols-outlined">{{event.icon}}</span>
+  </ng-template>
+  <ng-template pTemplate="content" let-event>
+    {{event.description}}
+  </ng-template>
+</p-timeline>

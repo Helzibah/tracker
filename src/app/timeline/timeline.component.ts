@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Timeline } from '../shared/timeline.model';
-import { TimelineModule } from 'primeng/timeline';
+import { LineComponent } from './line/line.component';
 
 @Component({
   selector: 'app-timeline',
   imports: [
-    TimelineModule,
+    LineComponent,
   ],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss'
