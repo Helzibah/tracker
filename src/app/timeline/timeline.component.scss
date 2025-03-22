@@ -1,0 +1,11 @@
+.in-between ::ng-deep .p-timeline-event-connector {
+  --spacing: 0.25em;
+  background-image: repeating-linear-gradient(
+    white 0 var(--spacing),
+    var(--p-timeline-event-connector-color) 0 calc(var(--spacing)*2)
+  )
+}
+
+.future {
+  color: darken(#e2e8f0, 20%);
+}

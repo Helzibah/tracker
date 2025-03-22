@@ -3,6 +3,7 @@ export class Timeline {
   events: TimelineEvent[] = [];
   future_template: TimelineEvent = new TimelineEvent();
   future: TimelineEvent[] = [];
+  middle: TimelineEvent[] = [];
 
   public constructor(init? : Partial<Timeline>) {
     Object.assign(this, init);

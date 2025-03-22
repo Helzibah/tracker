@@ -12,5 +12,6 @@ import { TimelineModule } from 'primeng/timeline';
 })
 export class LineComponent {
   @Input({required: true}) events !: TimelineEvent[];
+  @Input() class: string = '';
 
 }

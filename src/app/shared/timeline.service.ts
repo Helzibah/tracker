@@ -20,6 +20,14 @@ export class TimelineService {
       json.future = this.template_events(json.future_template, json.future);
     }
 
+    // final event to link the line up to the next
+    json.events.push(new TimelineEvent({ date: '', description: '', icon: ''}));
+
+    // in-between timeline to bridge the gap to the next timeline
+    json.middle = [
+      new TimelineEvent({ date: '', description: '', icon: ''}),
+      new TimelineEvent({ date: '', description: '', icon: ''})]
+
     return json;
   }
 
