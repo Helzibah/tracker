@@ -5,7 +5,7 @@
       <div class="text">{{label.to}}</div>
     </div>
     <div class="field" *ngIf="id">
-      <div class="text">
+      <div class="text center">
         <qrcode
         [qrdata]="id"
         [cssClass]="'center'"
@@ -15,7 +15,7 @@
         [errorCorrectionLevel]="'M'"
         [margin]="4"
         [scale]="64"
-        [width]="300"
+        [width]="200"
       ></qrcode>
       </div>
     </div>
