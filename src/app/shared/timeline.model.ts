@@ -11,15 +11,28 @@ export class Timeline {
 }
 
 export class TimelineEvent {
-  date: string = '';
+  date: Date = new Date();
   description: string = '';
   icon: string = '';
 
   public constructor(init? : Partial<TimelineEvent>) {
-    Object.assign(this, init);
+    if (init) {
+        this._apply(init);
+    }
   }
 
   public apply(e: Partial<TimelineEvent>) {
+    this._apply(e);
+  }
+
+  private _apply(e: Partial<TimelineEvent>) {
+    if (e.date) {
+      var parsed = new Date(e.date);
+
+      // check that the date parses correctly
+      e.date = isNaN(parsed.getTime()) ? undefined : parsed;
+    }
+
     Object.assign(this, e);
   }
 }

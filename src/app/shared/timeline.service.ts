@@ -21,12 +21,12 @@ export class TimelineService {
     }
 
     // final event to link the line up to the next
-    json.events.push(new TimelineEvent({ date: '', description: '', icon: ''}));
+    json.events.push(new TimelineEvent({ date: undefined, description: '', icon: ''}));
 
     // in-between timeline to bridge the gap to the next timeline
     json.middle = [
-      new TimelineEvent({ date: '', description: '', icon: ''}),
-      new TimelineEvent({ date: '', description: '', icon: ''})]
+      new TimelineEvent({ date: undefined, description: '', icon: ''}),
+      new TimelineEvent({ date: undefined, description: '', icon: ''})]
 
     return json;
   }

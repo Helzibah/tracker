@@ -1,6 +1,6 @@
 <p-timeline [value]="events" align="left" [class]="class">
   <ng-template pTemplate="opposite" let-event>
-    <span class="date">{{event.date}}</span>
+    <span class="date">{{event.date | date:'yyyy-MM-dd HH:mm'}}</span>
   </ng-template>
   <ng-template pTemplate="marker" let-event>
     <span class="material-symbols-outlined">{{event.icon}}</span>
