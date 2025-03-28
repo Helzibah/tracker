@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TimelineEvent } from '../../shared/timeline.model';
 import { TimelineModule } from 'primeng/timeline';
 import { CommonModule } from '@angular/common';
+import { DateTime } from "luxon";
 
 @Component({
   selector: 'app-line',
@@ -16,4 +17,5 @@ export class LineComponent {
   @Input({required: true}) events !: TimelineEvent[];
   @Input() class: string = '';
 
+  format = DateTime.DATETIME_SHORT;
 }

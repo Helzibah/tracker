@@ -1,9 +1,9 @@
+import { DateTime } from "luxon";
+
 export class Timeline {
-  events_template: TimelineEvent = new TimelineEvent();
   events: TimelineEvent[] = [];
-  future_template: TimelineEvent = new TimelineEvent();
-  future: TimelineEvent[] = [];
   middle: TimelineEvent[] = [];
+  future: TimelineEvent[] = [];
 
   public constructor(init? : Partial<Timeline>) {
     Object.assign(this, init);
@@ -11,28 +11,52 @@ export class Timeline {
 }
 
 export class TimelineEvent {
-  date: Date = new Date();
+  datetime?: DateTime = undefined;
   description: string = '';
   icon: string = '';
 
-  public constructor(init? : Partial<TimelineEvent>) {
+  public constructor(init? : Partial<RawTimelineEvent>, timezone?: string) {
     if (init) {
-        this._apply(init);
+        this._apply(init, timezone);
     }
   }
 
-  public apply(e: Partial<TimelineEvent>) {
-    this._apply(e);
+  public apply(e: Partial<RawTimelineEvent>, timezone?: string) {
+    this._apply(e, timezone);
   }
 
-  private _apply(e: Partial<TimelineEvent>) {
+  private _apply(e: Partial<RawTimelineEvent>, timezone?: string) {
     if (e.date) {
-      var parsed = new Date(e.date);
-
-      // check that the date parses correctly
-      e.date = isNaN(parsed.getTime()) ? undefined : parsed;
+      var date = DateTime.fromSQL(e.date, { zone: timezone });
+      this.datetime = date;
     }
 
     Object.assign(this, e);
   }
+}
+
+export class RawTimeline {
+  timezone: string = 'Europe/London';
+  events_template: RawTimelineEvent = new RawTimelineEvent();
+  events: RawTimelineEvent[] = [];
+  future_template: RawTimelineEvent = new RawTimelineEvent();
+  future: RawTimelineEvent[] = [];
+
+  public constructor(init? : Partial<Timeline>) {
+    Object.assign(this, init);
+  }
+}
+
+
+export class RawTimelineEvent {
+  date: string = '';
+  description: string = '';
+  icon: string = '';
+
+  public constructor(init? : Partial<RawTimelineEvent>) {
+    if (init) {
+      Object.assign(this, init);
+    }
+  }
+
 }

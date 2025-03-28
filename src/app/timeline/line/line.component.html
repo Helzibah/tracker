@@ -1,6 +1,10 @@
 <p-timeline [value]="events" align="left" [class]="class">
   <ng-template pTemplate="opposite" let-event>
-    <span class="date">{{event.date | date:'yyyy-MM-dd HH:mm'}}</span>
+    <ng-container *ngIf="event.datetime && event.datetime.isValid">
+      <span class="date">{{event.datetime.toLocaleString(format)}}</span>
+      <br />
+      <span class="date">{{event.datetime.setZone('America/Los_Angeles').toLocaleString(format)}}</span>
+    </ng-container>
   </ng-template>
   <ng-template pTemplate="marker" let-event>
     <span class="material-symbols-outlined">{{event.icon}}</span>

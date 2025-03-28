@@ -15,6 +15,5 @@ export class TimelineComponent {
   @Input({required: true}) timeline !: Timeline;
 
   ngOnInit() {
-    console.log(this.timeline);
   }
 }
