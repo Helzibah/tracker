@@ -1,6 +1,7 @@
 import { Document } from 'yaml';
 
 export class Tracking {
+  configRaw: Document | undefined;
   labelRaw: Document | undefined;
   timelineRaw: Document | undefined;
 

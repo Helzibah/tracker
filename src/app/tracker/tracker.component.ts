@@ -9,6 +9,8 @@ import { TimelineService } from '../shared/timeline.service';
 import { TimelineComponent } from '../timeline/timeline.component';
 import { Tracking } from './tracking.model';
 import { TrackingService } from './tracking.service';
+import { Config } from '../shared/config.model';
+import { ConfigService } from '../shared/config.service';
 
 @Component({
   selector: 'app-tracker',
@@ -25,12 +27,14 @@ export class TrackerComponent {
   id: string;
   item: string;
 
+  config: Config | undefined;
   label: Label | undefined;
   timeline: Timeline | undefined;
   loaded: boolean = false;
 
   constructor(private route: ActivatedRoute,
     private trackingService: TrackingService,
+    private configService: ConfigService,
     private labelService: LabelService,
     private timelineService: TimelineService,
   ) {
@@ -40,6 +44,9 @@ export class TrackerComponent {
 
   ngOnInit(): void {
     this.trackingService.fetch(this.id).subscribe((result: Tracking) => {
+      if (result.configRaw != undefined) {
+        this.config = this.configService.parseRaw(result.configRaw);
+      }
       if (result.labelRaw != undefined) {
         this.label = this.labelService.parseRaw(result.labelRaw);
       }

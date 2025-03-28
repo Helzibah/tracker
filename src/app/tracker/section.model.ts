@@ -3,6 +3,7 @@ export class Section {
 }
 
 export enum Sections {
+  Config = 'config',
   Label = 'label',
   Timeline = 'timeline',
 }

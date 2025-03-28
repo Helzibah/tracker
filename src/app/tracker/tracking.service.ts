@@ -38,6 +38,9 @@ export class TrackingService {
       var doc = d.toJSON() as Section;
 
       switch (doc.name.toLocaleLowerCase()) {
+        case Sections.Config:
+          t.configRaw = d;
+          break;
         case Sections.Label:
           t.labelRaw = d;
           break;
