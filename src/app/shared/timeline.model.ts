@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 
 export class Timeline {
+  outputs: string[] = [];
   events: TimelineEvent[] = [];
   middle: TimelineEvent[] = [];
   future: TimelineEvent[] = [];
@@ -27,8 +28,13 @@ export class TimelineEvent {
 
   private _apply(e: Partial<RawTimelineEvent>, timezone?: string) {
     if (e.date) {
-      var date = DateTime.fromSQL(e.date, { zone: timezone });
-      this.datetime = date;
+      if (timezone) {
+        var date = DateTime.fromSQL(e.date, { zone: timezone });
+        this.datetime = date;
+      } else {
+        var date = DateTime.fromSQL(e.date);
+        this.datetime = date;
+      }
     }
 
     Object.assign(this, e);
@@ -36,7 +42,8 @@ export class TimelineEvent {
 }
 
 export class RawTimeline {
-  timezone: string = 'Europe/London';
+  outputs: string[] = [];
+  timezone: string = '';
   events_template: RawTimelineEvent = new RawTimelineEvent();
   events: RawTimelineEvent[] = [];
   future_template: RawTimelineEvent = new RawTimelineEvent();

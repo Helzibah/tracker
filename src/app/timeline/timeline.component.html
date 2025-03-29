@@ -1,5 +1,5 @@
 <div class="sticker">
-  <app-line [events]="timeline.events" class="current"></app-line>
-  <app-line [events]="timeline.middle" class="in-between"></app-line>
-  <app-line [events]="timeline.future" class="future"></app-line>
+  <app-line [events]="timeline.events" [timezones]="timeline.outputs" class="current"></app-line>
+  <app-line [events]="timeline.middle" [timezones]="timeline.outputs" class="in-between"></app-line>
+  <app-line [events]="timeline.future" [timezones]="timeline.outputs" class="future"></app-line>
 </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RawTimeline, RawTimelineEvent, Timeline, TimelineEvent } from './timeline.model';
 import { Document } from 'yaml';
+import { DateTime } from 'luxon';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,22 @@ export class TimelineService {
       new TimelineEvent({ date: undefined, description: '', icon: ''}),
       new TimelineEvent({ date: undefined, description: '', icon: ''})
     ];
+
+    // validate timezones for output
+    for (var zone of rawTimeline.outputs) {
+      if (zone == '_') {
+        timeline.outputs.push(zone);
+      } else {
+        var test = DateTime.local().setZone(zone);
+        if (test.isValid) {
+          timeline.outputs.push(zone);
+        }
+      }
+    }
+
+    if (timeline.outputs.length == 0) {
+      timeline.outputs = ['_'];
+    }
 
     return timeline;
   }

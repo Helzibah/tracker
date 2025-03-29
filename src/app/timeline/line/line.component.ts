@@ -15,7 +15,11 @@ import { DateTime } from "luxon";
 })
 export class LineComponent {
   @Input({required: true}) events !: TimelineEvent[];
+  @Input({required: true}) timezones !: string[];
   @Input() class: string = '';
 
-  format = DateTime.DATETIME_SHORT;
+  format = 'yyyy-MM-dd HH:mm ZZZZ';
+
+  ngOnInit() {
+  }
 }
