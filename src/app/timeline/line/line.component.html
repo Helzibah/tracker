@@ -1,12 +1,8 @@
 <p-timeline [value]="events" align="left" [class]="class">
   <ng-template pTemplate="opposite" let-event>
     <ng-container *ngIf="event.datetime && event.datetime.isValid">
-      @for (zone of timezones; track $index) {
-        @if (zone == '_') {
-          <span class="date">{{event.datetime.toFormat(format)}}</span>
-        } @else {
-          <span class="date">{{event.datetime.setZone(zone).toFormat(format)}}</span>
-        }
+      @for (dt of getDateStrings(event.datetime); track $index) {
+        <span class="date">{{dt}}</span>
         <br />
       }
     </ng-container>
