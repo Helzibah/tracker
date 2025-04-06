@@ -3,6 +3,8 @@
     <app-label [label]="label" [id]="id" [item]="item"></app-label>
   </div>
   <div *ngIf="timeline" class="timeline">
-    <app-timeline [timeline]="timeline"></app-timeline>
+    <div class="sticker">
+      <app-timeline [timeline]="timeline"></app-timeline>
+    </div>
   </div>
 </div>
