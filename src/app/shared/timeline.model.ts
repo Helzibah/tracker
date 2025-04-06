@@ -15,6 +15,7 @@ export class TimelineEvent {
   datetime?: DateTime = undefined;
   description: string = '';
   icon: string = '';
+  side: string = 'right';
 
   public constructor(init? : Partial<RawTimelineEvent>, timezone?: string) {
     if (init) {
@@ -34,6 +35,13 @@ export class TimelineEvent {
       } else {
         var date = DateTime.fromSQL(e.date);
         this.datetime = date;
+      }
+    }
+
+    if (e.side) {
+      var side = e.side.toLocaleLowerCase();
+      if (side != 'right') {
+        e.side == 'left';
       }
     }
 
@@ -59,6 +67,7 @@ export class RawTimelineEvent {
   date: string = '';
   description: string = '';
   icon: string = '';
+  side: string = 'right';
 
   public constructor(init? : Partial<RawTimelineEvent>) {
     if (init) {

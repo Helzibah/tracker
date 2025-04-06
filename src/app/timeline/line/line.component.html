@@ -1,16 +1,26 @@
-<p-timeline [value]="events" align="left" [class]="class">
+<p-timeline [value]="events" [class]="class">
   <ng-template pTemplate="opposite" let-event>
-    <ng-container *ngIf="event.datetime && event.datetime.isValid">
-      @for (dt of getDateStrings(event.datetime); track $index) {
-        <span class="date">{{dt}}</span>
-        <br />
-      }
+    <ng-container *ngTemplateOutlet="event.side == 'right' ? datetime : content; context: { $implicit : event }">
     </ng-container>
   </ng-template>
   <ng-template pTemplate="marker" let-event>
     <span class="material-symbols-outlined">{{event.icon}}</span>
   </ng-template>
   <ng-template pTemplate="content" let-event>
-    {{event.description}}
+    <ng-container *ngTemplateOutlet="event.side == 'right' ? content : datetime; context: { $implicit : event }">
+    </ng-container>
   </ng-template>
 </p-timeline>
+
+
+<ng-template #datetime let-event>
+  <ng-container *ngIf="event.datetime && event.datetime.isValid">
+    @for (dt of getDateStrings(event.datetime); track $index) {
+      <span class="date">{{dt}}</span>
+      <br />
+    }
+  </ng-container>
+</ng-template>
+<ng-template #content let-event>
+  {{event.description}}
+</ng-template>
