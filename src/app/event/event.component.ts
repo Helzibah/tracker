@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TimelineEvent } from '../shared/timeline.model';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 import { TimelineService } from '../shared/timeline.service';
 
 @Component({
@@ -9,6 +11,8 @@ import { TimelineService } from '../shared/timeline.service';
   imports: [
     ReactiveFormsModule,
     InputTextModule,
+    IconFieldModule,
+    InputIconModule,
   ],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'

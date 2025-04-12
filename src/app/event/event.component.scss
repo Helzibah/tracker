@@ -4,3 +4,15 @@
   font-style: normal;
   font-size: 0.9em;
 }
+
+p-iconfield {
+  --p-icon-size: 24px;
+  width: 10em;
+  input {
+    width: 10em;
+  }
+  p-inputicon {
+    width: var(--p-icon-size);
+    overflow: hidden;
+  }
+}
