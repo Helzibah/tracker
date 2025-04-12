@@ -1,1 +1,6 @@
-<p>event works!</p>
+<form [formGroup]="eventForm">
+  <input type="text" pInputText formControlName="icon" />
+  <span class="material-symbols-outlined">{{eventForm.value.icon}}</span>
+</form>
+
+<p class="output">{{raw}}</p>

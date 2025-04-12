@@ -60,4 +60,9 @@ export class TimelineService {
 
     return events;
   }
+
+  parseEventToRaw(event: TimelineEvent) : string {
+    var doc = new Document(event);
+    return doc.toString({ collectionStyle: 'flow'});
+  }
 }
