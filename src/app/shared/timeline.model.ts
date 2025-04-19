@@ -44,8 +44,13 @@ export class TimelineEvent {
       }
     }
 
-    this.icon = raw.icon ?? '';
-    this.description = raw.description ?? '';
+    if (raw.icon) {
+      this.icon = raw.icon ?? '';
+    }
+
+    if (raw.description) {
+      this.description = raw.description ?? '';
+    }
   }
 }
 

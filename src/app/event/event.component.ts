@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { DatePickerModule } from 'primeng/datepicker';
+import { TextareaModule } from 'primeng/textarea';
 import { TimelineService } from '../shared/timeline.service';
 import { DateTime } from 'luxon';
 
@@ -16,6 +17,7 @@ import { DateTime } from 'luxon';
     IconFieldModule,
     InputIconModule,
     DatePickerModule,
+    TextareaModule,
   ],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
@@ -24,6 +26,7 @@ export class EventComponent {
   eventForm: FormGroup = new FormGroup({
     icon: new FormControl(''),
     date: new FormControl(''),
+    description: new FormControl(''),
   });
   raw: string = '';
 
@@ -46,6 +49,7 @@ export class EventComponent {
       }
 
       event.icon = change.icon != '' ? change.icon : undefined;
+      event.description = change.description != '' ? change.description : undefined;
     }
     this.raw = this.timelineService.outputRaw(event);
   }

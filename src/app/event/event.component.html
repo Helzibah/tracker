@@ -4,7 +4,11 @@
     <p-inputicon styleClass="material-symbols-outlined">{{eventForm.value.icon}}</p-inputicon>
   </p-iconfield>
 
+  <br />
   <p-datepicker formControlName="date" dateFormat="yy-mm-dd" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-datepicker>
+  <br />
+  <br />
+  <textarea pTextarea cols="50" formControlName="description"></textarea>
 </form>
 
 <p class="output">{{raw}}</p>
