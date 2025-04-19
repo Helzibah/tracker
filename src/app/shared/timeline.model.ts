@@ -19,33 +19,33 @@ export class TimelineEvent {
 
   public constructor(init? : Partial<RawTimelineEvent>, timezone?: string) {
     if (init) {
-        this._apply(init, timezone);
+        Object.assign(this, init);
     }
   }
-
-  public apply(e: Partial<RawTimelineEvent>, timezone?: string) {
-    this._apply(e, timezone);
+  public apply(raw: Partial<RawTimelineEvent>, timezone?: string) {
+    this._apply(raw, timezone);
   }
 
-  private _apply(e: Partial<RawTimelineEvent>, timezone?: string) {
-    if (e.date) {
-      if (timezone) {
-        var date = DateTime.fromSQL(e.date, { zone: timezone });
+  private _apply(raw: Partial<RawTimelineEvent>, timezone?: string) {
+    if (raw.date) {
+      if (timezone && raw.date) {
+        var date = DateTime.fromSQL(raw.date, { zone: timezone });
         this.datetime = date;
       } else {
-        var date = DateTime.fromSQL(e.date);
+        var date = DateTime.fromSQL(raw.date);
         this.datetime = date;
       }
     }
 
-    if (e.side) {
-      var side = e.side.toLocaleLowerCase();
+    if (raw.side) {
+      var side = raw.side.toLocaleLowerCase();
       if (side != 'right') {
-        e.side == 'left';
+        raw.side == 'left';
       }
     }
 
-    Object.assign(this, e);
+    this.icon = raw.icon ?? '';
+    this.description = raw.description ?? '';
   }
 }
 
@@ -62,12 +62,11 @@ export class RawTimeline {
   }
 }
 
-
 export class RawTimelineEvent {
-  date: string = '';
-  description: string = '';
-  icon: string = '';
-  side: string = 'right';
+  date?: string = undefined;
+  description?: string = undefined;
+  icon?: string = undefined;
+  side?: string = undefined;
 
   public constructor(init? : Partial<RawTimelineEvent>) {
     if (init) {
@@ -75,4 +74,7 @@ export class RawTimelineEvent {
     }
   }
 
+  dateFromDateTime(datetime: DateTime) {
+    this.date = datetime.toFormat('yyyy-MM-dd HH:mm');
+  }
 }

@@ -3,6 +3,8 @@
     <input type="text" pInputText formControlName="icon">
     <p-inputicon styleClass="material-symbols-outlined">{{eventForm.value.icon}}</p-inputicon>
   </p-iconfield>
+
+  <p-datepicker formControlName="date" dateFormat="yy-mm-dd" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-datepicker>
 </form>
 
 <p class="output">{{raw}}</p>

@@ -48,21 +48,20 @@ export class TimelineService {
   private create_events(rawEvents: RawTimelineEvent[], timezone: string, template?: RawTimelineEvent) {
     var events = [];
 
-    for (var e of rawEvents) {
+    for (var raw of rawEvents) {
+      var event = new TimelineEvent();
       if (template) {
-        var event = new TimelineEvent(template, timezone);
-        event.apply(e);
-        events.push(event);
-      } else {
-        events.push(new TimelineEvent(e, timezone));
+        event.apply(template, timezone);
       }
+      event.apply(raw, timezone);
+      events.push(event);
     }
 
     return events;
   }
 
-  parseEventToRaw(event: TimelineEvent) : string {
-    var doc = new Document(event);
+  outputRaw(raw: RawTimelineEvent) : string {
+    var doc = new Document(raw);
     return doc.toString({ collectionStyle: 'flow'});
   }
 }
