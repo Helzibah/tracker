@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TrackerComponent } from './tracker/tracker.component';
+import { NotificationService } from './shared/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +10,17 @@ import { TrackerComponent } from './tracker/tracker.component';
 })
 export class AppComponent {
   title = 'tracker';
+
+  constructor(
+    private notificationService: NotificationService,
+  ) { }
+
+  ngOnInit(): void {
+    var self = this;
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === 'visible') {
+        self.notificationService.unsetBadge();
+      }
+    });
+  }
 }
