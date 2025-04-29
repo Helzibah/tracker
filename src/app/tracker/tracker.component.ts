@@ -47,11 +47,11 @@ export class TrackerComponent {
   }
 
   ngOnInit(): void {
-    this._fetch();
-
-    setTimeout(() => {
-      this._fetch();
-    }, 5000);
+    var self = this;
+    (function poll() {
+      self._fetch();
+      setTimeout(poll, 300000)
+    }());
   }
 
   private _fetch() {
