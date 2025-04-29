@@ -66,7 +66,10 @@ export class TrackerComponent {
         this.timeline = this.timelineService.parseRaw(result.timelineRaw);
         var c = this.timeline?.events.length + this.timeline?.future.length || 0;
         if (c != this.count) {
-          this.notificationService.setBadge();
+          if (this.loaded) {
+            // don't flag for the first run through
+            this.notificationService.setBadge();
+          }
           this.count = c;
         }
       }
