@@ -40,7 +40,7 @@ export class TimelineEvent {
     if (raw.side) {
       var side = raw.side.toLocaleLowerCase();
       if (side != 'right') {
-        raw.side == 'left';
+        this.side = 'left';
       }
     }
 
