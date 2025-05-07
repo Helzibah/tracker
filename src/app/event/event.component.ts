@@ -6,6 +6,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { DatePickerModule } from 'primeng/datepicker';
 import { TextareaModule } from 'primeng/textarea';
+import { ButtonModule } from 'primeng/button';
 import { TimelineService } from '../shared/timeline.service';
 import { DateTime } from 'luxon';
 
@@ -18,6 +19,7 @@ import { DateTime } from 'luxon';
     InputIconModule,
     DatePickerModule,
     TextareaModule,
+    ButtonModule,
   ],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
@@ -52,5 +54,9 @@ export class EventComponent {
       event.description = change.description != '' ? change.description : undefined;
     }
     this.raw = this.timelineService.outputRaw(event);
+  }
+
+  copy() {
+    navigator.clipboard.writeText(this.raw);
   }
 }

@@ -8,7 +8,12 @@
   <p-datepicker formControlName="date" dateFormat="yy-mm-dd" [showTime]="true" hourFormat="24" [showButtonBar]="true"></p-datepicker>
   <br />
   <br />
-  <textarea pTextarea cols="50" formControlName="description"></textarea>
+  <textarea pTextarea formControlName="description"></textarea>
 </form>
 
-<p class="output">{{raw}}</p>
+<p class="output">
+  <button pButton severity="secondary" class="right" aria-label="copy" (click)="copy()">
+    <span class="material-symbols-outlined">content_copy</span>
+  </button>
+  {{raw}}
+</p>
