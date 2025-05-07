@@ -12,6 +12,7 @@ import { TrackingService } from './tracking.service';
 import { Config } from '../shared/config.model';
 import { ConfigService } from '../shared/config.service';
 import { NotificationService } from '../shared/notification.service';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-tracker',
@@ -49,33 +50,45 @@ export class TrackerComponent {
   ngOnInit(): void {
     var self = this;
     (function poll() {
-      self._fetch();
-      setTimeout(poll, 300000)
+      self._fetch().subscribe({
+        next: value => {
+          if (value) {
+            setTimeout(poll, 300000)
+          }
+        }
+      });
     }());
   }
 
-  private _fetch() {
-    this.trackingService.fetch(this.id).subscribe((result: Tracking) => {
-      if (result.configRaw != undefined) {
-        this.config = this.configService.parseRaw(result.configRaw);
-      }
-      if (result.labelRaw != undefined) {
-        this.label = this.labelService.parseRaw(result.labelRaw);
-      }
-      if (result.timelineRaw != undefined) {
-        this.timeline = this.timelineService.parseRaw(result.timelineRaw);
-        var c = this.timeline?.events.length + this.timeline?.future.length || 0;
-        if (c != this.count) {
-          if (this.loaded) {
-            // don't flag for the first run through
-            this.notificationService.setBadge();
+  private _fetch() : Observable<boolean> {
+    return new Observable((observer: Observer<any>) => {
+      this.trackingService.fetch(this.id).subscribe({
+        next: (result: Tracking) => {
+          if (result.configRaw != undefined) {
+            this.config = this.configService.parseRaw(result.configRaw);
           }
-          this.count = c;
-        }
-      }
+          if (result.labelRaw != undefined) {
+            this.label = this.labelService.parseRaw(result.labelRaw);
+          }
+          if (result.timelineRaw != undefined) {
+            this.timeline = this.timelineService.parseRaw(result.timelineRaw);
+            var c = this.timeline?.events.length + this.timeline?.future.length || 0;
+            if (c != this.count) {
+              if (this.loaded) {
+                // don't flag for the first run through
+                this.notificationService.setBadge();
+              }
+              this.count = c;
+            }
+          }
 
-      this.loaded = true;
-    })
+          this.loaded = true;
+          observer.next(true);
+        }, error: (error) => {
+          observer.next(false);
+        },
+      });
+    });
   }
 
 }
