@@ -1,4 +1,12 @@
 <form [formGroup]="eventForm">
+  <button pButton severity="danger" class="icons right" (click)="setIcon('')" *ngIf="eventForm.get('icon')?.value != ''">
+    <span class="material-symbols-outlined">cancel</span>
+  </button>
+  @for (icon of icons; track $index) {
+    <button pButton severity="secondary" class="icons" (click)="setIcon(icon)">
+      <span class="material-symbols-outlined">{{icon}}</span>
+    </button>
+  }
   <p-iconfield>
     <input type="text" pInputText formControlName="icon">
     <p-inputicon styleClass="material-symbols-outlined">{{eventForm.value.icon}}</p-inputicon>

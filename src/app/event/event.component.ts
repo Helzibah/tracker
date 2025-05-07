@@ -9,6 +9,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';
 import { TimelineService } from '../shared/timeline.service';
 import { DateTime } from 'luxon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-event',
@@ -20,6 +21,7 @@ import { DateTime } from 'luxon';
     DatePickerModule,
     TextareaModule,
     ButtonModule,
+    CommonModule,
   ],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
@@ -31,6 +33,9 @@ export class EventComponent {
     description: new FormControl(''),
   });
   raw: string = '';
+  icons: string[] = ['star', 'emoji_food_beverage', 'cookie', 'ramen_dining', 'restaurant',
+    'live_tv', 'menu_book', 'waves',
+    'train', 'directions_railway', 'flight_takeoff', 'flight_land', 'directions_car'];
 
   constructor(
     private timelineService: TimelineService,
@@ -40,6 +45,10 @@ export class EventComponent {
   ngOnInit() {
     this.eventForm.valueChanges.subscribe(change => this.updateEvent(change));
     this.updateEvent(null);
+  }
+
+  setIcon(icon: string) {
+    this.eventForm.patchValue({icon: icon});
   }
 
   updateEvent(change: any) {
