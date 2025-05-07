@@ -50,3 +50,24 @@ body {
     color: black;
   }
 }
+
+$input-width: 12em;
+
+input {
+  width: $input-width;
+}
+
+p-iconfield {
+  --p-icon-size: 24px;
+  width: $input-width;
+  p-inputicon {
+    width: var(--p-icon-size);
+    overflow: hidden;
+  }
+}
+
+p-datepicker {
+  span.p-datepicker {
+    width: $input-width;
+  }
+}
