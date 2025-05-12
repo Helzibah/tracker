@@ -63,6 +63,6 @@ export class TimelineService {
   outputRaw(raw: RawTimelineEvent) : string {
     var doc = new Document(raw);
     var result = doc.toString({ collectionStyle: 'flow'});
-    return result.replaceAll('\n', ' ');
+    return result.replaceAll('\n', '');
   }
 }

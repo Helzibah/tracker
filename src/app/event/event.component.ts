@@ -66,6 +66,6 @@ export class EventComponent {
   }
 
   copy() {
-    navigator.clipboard.writeText(this.raw);
+    navigator.clipboard.writeText('  ' + this.raw + ',');
   }
 }
