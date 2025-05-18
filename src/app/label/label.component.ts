@@ -20,7 +20,6 @@ export class LabelComponent {
   to: string[] = [];
 
   ngOnInit() {
-    console.log(this.label);
     if (this.label.to) {
       this.to = this.label.to.split('\n');
     }
