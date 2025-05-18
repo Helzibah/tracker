@@ -17,6 +17,18 @@
   align-self: stretch;
 }
 
+.error {
+  margin: 50px;
+}
+
+.nerd {
+  font-family: "Cutive Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
 
 @media (max-width: 2000px) {
   .wrapper {

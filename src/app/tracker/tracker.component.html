@@ -10,3 +10,12 @@
     </div>
   </div>
 </div>
+<div *ngIf="errored" class="error">
+  <p-message severity="error">ah fuck, something screwed up. try refreshing?</p-message>
+  <br/>
+  <p-fieldset legend="Nerd shit" [toggleable]="true">
+    <p class="nerd">
+      {{errorMsg}}
+    </p>
+  </p-fieldset>
+</div>

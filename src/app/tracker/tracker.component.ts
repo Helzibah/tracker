@@ -13,6 +13,8 @@ import { Config } from '../shared/config.model';
 import { ConfigService } from '../shared/config.service';
 import { NotificationService } from '../shared/notification.service';
 import { Observable, Observer } from 'rxjs';
+import { FieldsetModule } from 'primeng/fieldset';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-tracker',
@@ -20,6 +22,8 @@ import { Observable, Observer } from 'rxjs';
     CommonModule,
     LabelComponent,
     TimelineComponent,
+    FieldsetModule,
+    MessageModule,
   ],
   templateUrl: './tracker.component.html',
   styleUrl: './tracker.component.scss'
@@ -33,6 +37,8 @@ export class TrackerComponent {
   label: Label | undefined;
   timeline: Timeline | undefined;
   loaded: boolean = false;
+  errored: boolean = false;
+  errorMsg: string = '';
 
   count: number = 0;
 
@@ -85,6 +91,10 @@ export class TrackerComponent {
           this.loaded = true;
           observer.next(true);
         }, error: (error) => {
+          console.log("oh no an error!", error);
+          this.loaded = false;
+          this.errored = true;
+          this.errorMsg = error.message;
           observer.next(false);
         },
       });
