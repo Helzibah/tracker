@@ -2,7 +2,14 @@
   <div class="wrapper">
     <div class="field"  *ngIf="label.to">
       <div class="label">Destination</div>
-      <div class="text">{{label.to}}</div>
+      <div class="text">
+        @for (line of to; track $index) {
+          <ng-container *ngIf="line">
+            <span>{{line}}</span>
+            <br/>
+        </ng-container>
+        }
+      </div>
     </div>
     <div class="field" *ngIf="id">
       <div class="text center">

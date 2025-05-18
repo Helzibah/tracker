@@ -17,8 +17,13 @@ export class LabelComponent {
   @Input() id: string = '';
   @Input() item: string = '';
 
+  to: string[] = [];
+
   ngOnInit() {
     console.log(this.label);
+    if (this.label.to) {
+      this.to = this.label.to.split('\n');
+    }
   }
 
 }
